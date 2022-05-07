@@ -24,7 +24,7 @@ fn main() {
     match input.parse::<i32>() {
 	  Ok(n) => {
 	     length = n;
-	     //println!("{}", length);
+         let alphabet = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	  },
 	  Err(e) => println!("Error parsing, {}", e)
     }
