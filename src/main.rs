@@ -1,3 +1,13 @@
+#![allow(unused_must_use)]
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
+
+fn get_random_buf() -> Result<[u8; 32], getrandom::Error> { // gives an array of ints, first parameter is type, second is amount of ints
+    let mut buf = [0u8; 32];
+    getrandom::getrandom(&mut buf)?;
+    Ok(buf)
+}
+
 fn trim_newline(s: &mut String) {
     while s.ends_with('\n') || s.ends_with('\r') {
         s.pop();
@@ -25,6 +35,17 @@ fn main() {
 	  Ok(n) => {
 	     length = n;
          let alphabet = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+         let symbolic = vec!{"!","@","#","$","%","^","&","*","(",")","-","_","+","="};
+         let numeric = vec![1,2,3,4,5,6,7,8,9,0];
+
+         let randarr = match get_random_buf() {
+             Ok(arr) =>  arr,
+             Err(_) => panic!("error getting random bytes"),
+         };
+
+         for i in 0..randarr.len() {
+             println!("{}", randarr[i]);
+         }
 	  },
 	  Err(e) => println!("Error parsing, {}", e)
     }
