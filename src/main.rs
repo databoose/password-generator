@@ -38,7 +38,12 @@ fn main() {
          let alphabet_capital = vec!["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
          let symbolic = vec!{"!","@","#","$","%","^","&","*","(",")","-","_","+","="};
          let numeric = vec!["1","2","3","4","5","6","7","8","9","0"];
-         // 76 possibles
+         // 76 possibles, 255 is max of u8 value
+
+         //below 63 = alphabet
+         //above 63 and below 127 = alphabet_capital
+         //above 127 and below 189 = symbolic
+         //above 189 and below 255 = numeric
 
          let randarr = match get_random_buf() {
              Ok(arr) =>  arr, // we want each element value from the array to represent a char
@@ -46,7 +51,17 @@ fn main() {
          };
 
          for i in 0..randarr.len() {
-             println!("{}", randarr[i]);
+             //println!("{}", randarr[i]);
+             match randarr[i] {
+                 0..=63 => println!("alpha {}", randarr[i]),
+                 63..=127 => println!("capital {}", randarr[i]),
+                 127..=189 => println!("symbolic {}", randarr[i]),
+                 189..=255 => println!("numeric {}", randarr[i]),
+                 _=> { 
+                    println!("error num {}", randarr[i]);
+                    panic!("out of range");
+                 },
+             }
          }
 	  },
 	  Err(e) => println!("Error parsing, {}", e)
