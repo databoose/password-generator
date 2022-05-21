@@ -35,11 +35,13 @@ fn main() {
 	  Ok(n) => {
 	     length = n;
          let alphabet = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+         let alphabet_capital = vec!["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
          let symbolic = vec!{"!","@","#","$","%","^","&","*","(",")","-","_","+","="};
-         let numeric = vec![1,2,3,4,5,6,7,8,9,0];
+         let numeric = vec!["1","2","3","4","5","6","7","8","9","0"];
+         // 76 possibles
 
          let randarr = match get_random_buf() {
-             Ok(arr) =>  arr,
+             Ok(arr) =>  arr, // we want each element value from the array to represent a char
              Err(_) => panic!("error getting random bytes"),
          };
 
