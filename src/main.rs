@@ -54,13 +54,9 @@ fn main() {
              //println!("{}", randarr[i]);
              match randarr[i] {
                  0..=63 => println!("alpha {}", randarr[i]),
-                 63..=127 => println!("capital {}", randarr[i]),
-                 127..=189 => println!("symbolic {}", randarr[i]),
-                 189..=255 => println!("numeric {}", randarr[i]),
-                 _=> { 
-                    println!("error num {}", randarr[i]);
-                    panic!("out of range");
-                 },
+                 64..=127 => println!("capital {}", randarr[i]),
+                 128..=189 => println!("symbolic {}", randarr[i]),
+                 190..=255 => println!("numeric {}", randarr[i]),
              }
          }
 	  },
