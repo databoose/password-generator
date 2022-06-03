@@ -27,7 +27,7 @@ fn main() {
     let mut random_passsword = String::new();
     for i in 0..randarr.len() {
         match randarr[i] {
-            0..=75 => {
+            0..=74 => {
                 random_passsword.push(dict[randarr[i] as usize]);
             },
             76..=255 => {},
