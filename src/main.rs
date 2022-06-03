@@ -2,8 +2,8 @@
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
 
-fn get_random_buf() -> Result<[u8; 64], getrandom::Error> { // gives an array of ints, first parameter is type, second is amount of ints
-    let mut buf = [0u8; 64];
+fn get_random_buf() -> Result<[u8; 50], getrandom::Error> { // gives an array of ints, first parameter is type, second is amount of ints
+    let mut buf = [0u8; 50];
     getrandom::getrandom(&mut buf)?;
     Ok(buf)
 }
