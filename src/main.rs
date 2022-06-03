@@ -30,7 +30,7 @@ fn main() {
             0..=74 => {
                 random_passsword.push(dict[randarr[i] as usize]);
             },
-            76..=255 => {},
+            75..=255 => {},
         }
     }
     println!("{}", random_passsword);
