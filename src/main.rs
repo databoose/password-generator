@@ -2,8 +2,8 @@
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
 
-fn get_random_buf() -> Result<[u8; 32], getrandom::Error> { // gives an array of ints, first parameter is type, second is amount of ints
-    let mut buf = [0u8; 32];
+fn get_random_buf() -> Result<[u8; 64], getrandom::Error> { // gives an array of ints, first parameter is type, second is amount of ints
+    let mut buf = [0u8; 64];
     getrandom::getrandom(&mut buf)?;
     Ok(buf)
 }
@@ -34,31 +34,25 @@ fn main() {
     match input.parse::<i32>() {
 	  Ok(n) => {
 	     length = n;
-         let alphabet = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-         let alphabet_capital = vec!["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-         let symbolic = vec!{"!","@","#","$","%","^","&","*","(",")","-","_","+","="};
-         let numeric = vec!["1","2","3","4","5","6","7","8","9","0"];
-         // 76 possibles, 255 is max of u8 value
-
-         //below 63 = alphabet
-         //above 63 and below 127 = alphabet_capital
-         //above 127 and below 189 = symbolic
-         //above 189 and below 255 = numeric
-
+         let dict = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 
+                         'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','O','R','S','T','U','V','W','X','Y','Z'
+                         ,'!','@','#','$','%','^','&','*','(',')','-','_','+','=',
+                         '1','2','3','4','5','6','7','8','9']; //75 chars
          let randarr = match get_random_buf() {
              Ok(arr) =>  arr, // we want each element value from the array to represent a char
              Err(_) => panic!("error getting random bytes"),
          };
 
+         let mut random_passsword = String::new();
          for i in 0..randarr.len() {
-             //println!("{}", randarr[i]);
              match randarr[i] {
-                 0..=63 => println!("alpha {}", randarr[i]),
-                 64..=127 => println!("capital {}", randarr[i]),
-                 128..=189 => println!("symbolic {}", randarr[i]),
-                 190..=255 => println!("numeric {}", randarr[i]),
+                 0..=75 => {
+                     random_passsword.push(dict[randarr[i] as usize]);
+                },
+                76..=255 => {},
              }
          }
+         println!("{}", random_passsword);
 	  },
 	  Err(e) => println!("Error parsing, {}", e)
     }
