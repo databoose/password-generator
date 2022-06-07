@@ -11,7 +11,8 @@ fn trim_newline(s: &mut String) {
     }
 }
 
-fn main() {  
+fn main() { 
+    let mut rng = rand::thread_rng();
     print!("\x1B[2J\x1B[1;1H"); // clear screen	
     println!("----------------------------");
     println!("---- Password Generator ----");
@@ -32,7 +33,6 @@ fn main() {
                      ,'!','@','#','$','%','^','&','*','(',')','-','_','+','=',
                      '1','2','3','4','5','6','7','8','9']; //75 chars
     let mut random_passsword = String::new();
-    let mut rng = rand::thread_rng();
 
     for x in 0..length {
         random_passsword.push(dict[rng.gen_range(0..75) as usize]);
