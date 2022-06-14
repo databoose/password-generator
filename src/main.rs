@@ -11,7 +11,7 @@ fn trim_newline(s: &mut String) {
     }
 }
 
-fn main() { 
+fn main() {
     let mut rng = rand::thread_rng();
     print!("\x1B[2J\x1B[1;1H"); // clear screen	
     println!("----------------------------");
@@ -38,4 +38,5 @@ fn main() {
         random_passsword.push(dict[rng.gen_range(0..75) as usize]);
     }
     println!("{}", random_passsword);
+    std::process::exit(0);
 }
